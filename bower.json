@@ -1,0 +1,19 @@
+{
+  "name": "modular-angular",
+  "version": "0.0.1",
+  "authors": ["Petri Koivula <petri.koivula@iki.fi>"],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.0-beta.4",
+    "angular-route": "1.4.0-beta.4",
+    "bootstrap": "3.3.2"
+  }
+}
