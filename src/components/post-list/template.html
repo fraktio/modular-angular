@@ -9,7 +9,10 @@
 
     <table>
         <tr ng-repeat="post in posts | filter:search">
-            <td>{{ post.author.name | reverseName }}</td>
+            <td mouseover-preview>
+                <div author="post.author" class="preview"></div>
+                {{ post.author.name | reverseName }}
+            </td>
             <td><a ng-href="/{{ post.slug }}">{{ post.title }}</a></td>
         </tr>
     </table>

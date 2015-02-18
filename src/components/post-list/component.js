@@ -1,7 +1,7 @@
-define(['../../services/post-service'], function () {
+define(['../../services/post-service', '../mouseover-preview/component'], function () {
     'use strict';
 
-    angular.module('postList', ['postService'])
+    angular.module('postList', ['postService', 'mouseoverPreview'])
 
         .filter('reverseName', function() {
             return function(value) {
@@ -12,18 +12,31 @@ define(['../../services/post-service'], function () {
         })
 
         .directive('postList', ['postService', function (postService) {
+
+            var getPostsForList = function () {
+                return postService.getAll()
+                    .then(function(posts) {
+                        return posts.map(function(post) {
+                            var listPost = _.pick(post, 'slug', 'title');
+                            listPost.author = _.pick(post.author, 'name', 'email', 'picture');
+                            return listPost;
+                        });
+                    });
+            };
+
             return {
+                scope: {},
                 template: require('./template.html'),
                 controller: ['$scope', function($scope) {
                     require('./style.less');
 
                     $scope.posts = [];
-                    postService.getAll().then(function (posts) {
+                    getPostsForList().then(function (posts) {
                         $scope.posts = posts;
                     });
 
                     $scope.refreshPosts = function() {
-                        postService.getAll().then(function (posts) {
+                        getPostsForList().then(function (posts) {
                             $scope.posts = posts;
                         });
                     };

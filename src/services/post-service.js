@@ -4,10 +4,19 @@ define([], function () {
     var postsUrl = require('file!./../data/posts.json');
 
     angular.module('postService', [])
-        .service('postService', ['$http', function ($http) {
+        .service('postService', ['$q', '$http', function ($q, $http) {
+            var posts = null;
+
             this.getAll = function () {
-                return $http.get(postsUrl).then(function(response) {
-                    return response.data;
+                if (posts) {
+                    return $q(function(resolve) {
+                        resolve(posts);
+                    });
+                }
+
+                return $http.get(postsUrl).then(function (response) {
+                    posts = response.data;
+                    return posts;
                 });
             };
 

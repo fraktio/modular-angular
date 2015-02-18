@@ -16,7 +16,7 @@ module.exports = function (grunt) {
                 port: 9999,
 
                 cache: 0,
-                showDir : true,
+                showDir: true,
                 autoIndex: true,
 
                 // server default file extension

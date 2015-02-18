@@ -1,0 +1,16 @@
+.mouseover-preview {
+  position: relative;
+
+  .preview {
+    display: none;
+  }
+
+  &.show-preview {
+    .preview {
+      position: absolute;
+      top: -150px;
+      display: block;
+      width: 100%;
+    }
+  }
+}

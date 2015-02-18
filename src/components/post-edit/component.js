@@ -1,9 +1,10 @@
-define(['../../services/post-service'], function () {
+define(['../../services/post-service', '../author/component'], function () {
     'use strict';
 
-    angular.module('postEdit', ['ngRoute', 'postService'])
+    angular.module('postEdit', ['ngRoute', 'postService', 'author'])
         .directive('postEdit', function () {
             return {
+                scope: {},
                 template: require('./template.html'),
                 controller: ['$scope', 'postService', '$routeParams', '$sce',
                     function($scope, postService, $routeParams, $sce) {
