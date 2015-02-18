@@ -1,9 +1,16 @@
 <div class="post-list">
     <h1>Blog posts</h1>
 
-    <ul>
-        <li ng-repeat="post in posts">
-            <a ng-href="/{{ post.slug }}">{{ post.title }}</a>
-        </li>
-    </ul>
+    <button ng-click="touchPostProperty('title')">Touch title</button>
+    <button ng-click="touchPostProperty('content')">Touch content</button>
+    <button ng-click="refreshPosts()">Refresh</button>
+
+    <input type="text" ng-model="search" placeholder="Search" />
+
+    <table>
+        <tr ng-repeat="post in posts | filter:search">
+            <td>{{ post.author.name | reverseName }}</td>
+            <td><a ng-href="/{{ post.slug }}">{{ post.title }}</a></td>
+        </tr>
+    </table>
 </div>

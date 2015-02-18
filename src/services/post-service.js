@@ -1,29 +1,27 @@
 define([], function () {
    'use strict';
 
-    var posts = [
-        {slug: 'blah', title: 'Blah'}
-    ];
+    var postsUrl = require('file!./../data/posts.json');
 
     angular.module('postService', [])
-        .service('postService', ['$q', function ($q) {
+        .service('postService', ['$http', function ($http) {
             this.getAll = function () {
-                return $q(function (resolve) {
-                    resolve(posts);
+                return $http.get(postsUrl).then(function(response) {
+                    return response.data;
                 });
             };
 
             this.getBySlug = function (slug) {
-                return $q(function (resolve, reject) {
+                return this.getAll().then(function (posts) {
                     var matchingPosts = posts.filter(function (post) {
                         return post.slug === slug;
                     });
 
                     if (matchingPosts.length < 1) {
-                        reject();
+                        throw new Error('No matching post');
                     }
 
-                    resolve(matchingPosts[0]);
+                    return matchingPosts[0];
                 });
             };
         }]);

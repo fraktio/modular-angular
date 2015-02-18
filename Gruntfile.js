@@ -71,7 +71,8 @@ module.exports = function (grunt) {
                     app: "./src/app.js",
                     vendor: [
                         './bower_components/angular/angular',
-                        './bower_components/angular-route/angular-route'
+                        './bower_components/angular-route/angular-route',
+                        './bower_components/lodash/lodash'
                     ]
                 },
 
