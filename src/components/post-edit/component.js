@@ -12,7 +12,7 @@ define(['../../services/post-service', '../author/component'], function () {
 
                         $scope.post = null;
                         postService.getBySlug($routeParams.slug).then(function(post) {
-                            post.content = $sce.trustAsHtml('<p>' + post.content.replace('\n', '</p><p>') + '</p>');
+                            $scope.content = $sce.trustAsHtml('<p>' + post.content.replace('\n', '</p><p>') + '</p>');
                             $scope.post = post;
                         });
                     }
