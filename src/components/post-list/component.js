@@ -1,7 +1,7 @@
-define(['../../services/post-service', '../mouseover-preview/component'], function () {
+define(['../../services/post-service', '../mouseover-preview/component', '../author/component'], function () {
     'use strict';
 
-    angular.module('postList', ['postService', 'mouseoverPreview'])
+    angular.module('postList', ['postService', 'mouseoverPreview', 'author'])
 
         .filter('reverseName', function() {
             return function(value) {
